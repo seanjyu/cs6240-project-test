@@ -13,7 +13,7 @@ object WordCountMain {
       logger.error("Usage:\nwc.WordCountMain <input dir> <output dir>")
       System.exit(1)
     }
-    val conf = new SparkConf().setAppName("Word Count")
+    val conf = new SparkConf().setAppName("Word Count").setMaster("local[4]")
     val sc = new SparkContext(conf)
 
 		// Delete output directory, only to ease local development; will not work on AWS. ===========
@@ -26,6 +26,9 @@ object WordCountMain {
     val counts = textFile.flatMap(line => line.split(" "))
                  .map(word => (word, 1))
                  .reduceByKey(_ + _)
+    // Log counts.toDebugString
+    logger.info(counts.toDebugString)
     counts.saveAsTextFile(args(1))
+
   }
 }
