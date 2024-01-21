@@ -62,3 +62,8 @@ All of the build & execution commands are organized in the Makefile.
 	- `make upload-input-aws`		-- only before first execution
 	- `make aws`					-- check for successful execution with web interface (aws.amazon.com)
 	- `download-output-aws`		-- after successful execution & termination
+	
+	
+Additional Edits
+----------------
+The make file was editted to allow the program to be run locally and on aws. Similarly, the spark master was changed on line 16-17 of WordCount.scala to allow the program to run locally and on aws.

@@ -13,6 +13,8 @@ object WordCountMain {
       logger.error("Usage:\nwc.WordCountMain <input dir> <output dir>")
       System.exit(1)
     }
+    // If want to run in aws need to set "yarn" as master
+    //val conf = new SparkConf().setAppName("Word Count").setMaster("yarn")
     val conf = new SparkConf().setAppName("Word Count").setMaster("local[4]")
     val sc = new SparkContext(conf)
 

@@ -3,7 +3,7 @@
 # Customize these paths for your environment.
 # -----------------------------------------------------------
 spark.root=/usr/local/spark-3.5.0-bin-hadoop3
-hadoop.root=/usr/local/hadoop
+hadoop.root=/usr/local/hadoop-3.3.5
 app.name=Word Count
 jar.name=spark-demo.jar
 maven.jar.name=spark-demo-1.0.jar
@@ -16,8 +16,17 @@ hdfs.user.name=joe
 hdfs.input=input
 hdfs.output=output
 # AWS EMR Execution
+#aws.emr.release=emr-6.10.0
+#aws.bucket.name=cs6240-demo-bucket
+#aws.input=input
+#aws.output=output
+#aws.log.dir=log
+#aws.num.nodes=1
+#aws.instance.type=m3.xlarge
 aws.emr.release=emr-6.10.0
-aws.bucket.name=cs6240-demo-bucket
+aws.region=us-east-1
+aws.bucket.name=hw1-spark-seanjyu
+#aws.subnet.id=subnet-6356553a
 aws.input=input
 aws.output=output
 aws.log.dir=log
@@ -119,7 +128,8 @@ aws: jar upload-app-aws delete-output-aws
 		--configurations '[{"Classification": "hadoop-env", "Configurations": [{"Classification": "export","Configurations": [],"Properties": {"JAVA_HOME": "/usr/lib/jvm/java-11-amazon-corretto.x86_64"}}],"Properties": {}}, {"Classification": "spark-env", "Configurations": [{"Classification": "export","Configurations": [],"Properties": {"JAVA_HOME": "/usr/lib/jvm/java-11-amazon-corretto.x86_64"}}],"Properties": {}}]' \
 		--use-default-roles \
 		--enable-debugging \
-		--auto-terminate
+		--auto-terminate \
+		--region us-east-1
 		
 # Download output from S3.
 download-output-aws: clean-local-output
