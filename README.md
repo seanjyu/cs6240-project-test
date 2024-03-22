@@ -1,5 +1,6 @@
-Spark WordCount Demo
-Example code for CS6240
+Project Testing
+
+See code in src/main/scala/project
 
 Author
 -----------
